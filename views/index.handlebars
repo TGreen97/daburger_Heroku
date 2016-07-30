@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="jumbotron">
+      <h1 class="text-center"><img src="/assets/img/burger.jpg" alt="burger" width="120px" height="120px" align="middle"><br>Eat Dat Burger!</h1>
+  </div>
+  <br>
+
+  <div class="flex-center">
+    <div class="row">
+      <div class="col-md-6">
+        <ul>
+          {{#each burgers}}
+            {{#unless this.devoured}}
+              <li>
+                <form action="burgers/updateOne/{{this.id}}?_method=PUT" method="POST">
+                  {{this.burger_name}}
+                  <input type="hidden" name="devoured" value="true">
+                  <button type="submit" class="btn btn-xs btn-primary submit">DEVOUR IT!</button>
+                  <br><br>
+                </form>
+              </li>
+            {{/unless}}
+          {{/each}}
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul>
+          {{#each burgers}}
+            {{#if this.devoured}}
+              <li>
+                {{this.burger_name}}
+                <form action="burgers/updateOne/{{this.id}}?_method=PUT" method="POST">
+                  <input type="hidden" name="devoured" value="true">
+                  <br>
+                </form>
+              </li>
+            {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="text-center">
+        <form class="create-update-form" action="burgers/insertOne" method="POST" align="middle" >
+          <div class="form-group">
+            <input type="text" id="ca" name="burger_name">
+          </div>
+          <button type="submit" class="btn btn-sm btn-danger" align="middle">Order It!</button>
+          <br><br>
+          <h2>Create a Burger To Add to the List!</h2>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+</div>
