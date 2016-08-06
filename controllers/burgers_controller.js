@@ -9,28 +9,28 @@ var models = require('../models');
 //models.burgers.sync();
 
 router.get('/', function (req, res) {
-  res.redirect('/burgers');
+  res.redirect('/Burgers');
 });
 
-router.get('/burgers', function (req, res) {
+router.get('/Burgers', function (req, res) {
   models.Burgers.findAll().then(function (data) {
-    res.render('index',{ burgers: data });
+    res.render('index',{ Burgers: data });
   });
 });
 
-router.post('/burgers/insertOne', function (req, res) {
+router.post('/Burgers/insertOne', function (req, res) {
   models.Burgers.insertOne({burger_name: req.body.burger_name, devoured: false}).then (function () {
-    res.redirect('/burgers');
+    res.redirect('/Burgers');
   });
 });
 
-router.put('/burgers/updateOne/:id', function (req, res) {
+router.put('/Burgers/updateOne/:id', function (req, res) {
   //var condition = 'id = ' + req.params.id;
 
   //console.log('condition', condition);
 
   models.Burgers.updateOne({ devoured: req.body.devoured }, {where: {id: req.params.id}}).then( function () {
-    res.redirect('/burgers');
+    res.redirect('/Burgers');
   });
 });
 

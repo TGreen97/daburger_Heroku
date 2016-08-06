@@ -8,10 +8,10 @@
     <div class="row">
       <div class="col-md-6">
         <ul>
-          {{#each burgers}}
+          {{#each Burgers}}
             {{#unless this.devoured}}
               <li>
-                <form action="burgers/updateOne/{{this.id}}?_method=PUT" method="POST">
+                <form action="Burgers/updateOne/{{this.id}}?_method=PUT" method="POST">
                   {{this.burger_name}}
                   <input type="hidden" name="devoured" value="true">
                   <button type="submit" class="btn btn-xs btn-primary submit">DEVOUR IT!</button>
@@ -24,11 +24,11 @@
       </div>
       <div class="col-md-6">
         <ul>
-          {{#each burgers}}
+          {{#each Burgers}}
             {{#if this.devoured}}
               <li>
                 {{this.burger_name}}
-                <form action="burgers/updateOne/{{this.id}}?_method=PUT" method="POST">
+                <form action="Burgers/updateOne/{{this.id}}?_method=PUT" method="POST">
                   <input type="hidden" name="devoured" value="true">
                   <br>
                 </form>
@@ -44,7 +44,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="text-center">
-        <form class="create-update-form" action="burgers/insertOne" method="POST" align="middle" >
+        <form class="create-update-form" action="Burgers/insertOne" method="POST" align="middle" >
           <div class="form-group">
             <input type="text" id="ca" name="burger_name">
           </div>
