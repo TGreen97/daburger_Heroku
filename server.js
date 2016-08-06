@@ -21,9 +21,7 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-var router = express.Router();
-
-require('./controllers/burgers_controller.js'); app.use('/', routes);
+var routes = require('./controllers/burgers_controller.js'); app.use('/', routes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
