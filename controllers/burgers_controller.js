@@ -5,7 +5,7 @@ var express = require('express');
 var methodOverride = require("method-override");
 var bodyParser = require("body-parser");
 var router = express.Router();
-var models = require('../models/burgers.js');
+var models = require('../models');
 //models.burgers.sync();
 
 router.get('/', function (req, res) {
@@ -14,9 +14,7 @@ router.get('/', function (req, res) {
 
 router.get('/burgers', function (req, res) {
   models.burgers.selectAll().then(function (data) {
-    var hbsObject = { burgers: data };
-    console.log(hbsObject);
-    res.render('index', hbsObject);
+    res.render('index',{ burgers: data });
   });
 });
 
