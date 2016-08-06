@@ -13,13 +13,13 @@ router.get('/', function (req, res) {
 });
 
 router.get('/burgers', function (req, res) {
-  models.burgers.selectAll().then(function (data) {
+  models.Burgers.findAll().then(function (data) {
     res.render('index',{ burgers: data });
   });
 });
 
 router.post('/burgers/insertOne', function (req, res) {
-  models.burgers.insertOne({burger_name: req.body.burger_name, devoured: false}).then (function () {
+  models.Burgers.insertOne({burger_name: req.body.burger_name, devoured: false}).then (function () {
     res.redirect('/burgers');
   });
 });
@@ -29,7 +29,7 @@ router.put('/burgers/updateOne/:id', function (req, res) {
 
   //console.log('condition', condition);
 
-  models.burgers.updateOne({ devoured: req.body.devoured }, {where: {id: req.params.id}}).then( function () {
+  models.Burgers.updateOne({ devoured: req.body.devoured }, {where: {id: req.params.id}}).then( function () {
     res.redirect('/burgers');
   });
 });
