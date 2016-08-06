@@ -5,14 +5,15 @@ var express = require('express');
 var methodOverride = require("method-override");
 var bodyParser = require("body-parser");
 var router = express.Router();
-var burger = require('../models/burger.js');
+var models = require('../models/burgers.js');
+models.burgers,sync();
 
 router.get('/', function (req, res) {
   res.redirect('/burgers');
 });
 
 router.get('/burgers', function (req, res) {
-  burger.selectAll(function (data) {
+  models.burgers.selectAll().then(function (data) {
     var hbsObject = { burgers: data };
     console.log(hbsObject);
     res.render('index', hbsObject);
@@ -20,17 +21,17 @@ router.get('/burgers', function (req, res) {
 });
 
 router.post('/burgers/insertOne', function (req, res) {
-  burger.insertOne(['burger_name', 'devoured'], [req.body.burger_name, req.body.devoured], function () {
+  models.burgers.insertOne({burger_name: req.body.burger_name, devoured: false}).then (function () {
     res.redirect('/burgers');
   });
 });
 
 router.put('/burgers/updateOne/:id', function (req, res) {
-  var condition = 'id = ' + req.params.id;
+  //var condition = 'id = ' + req.params.id;
 
-  console.log('condition', condition);
+  //console.log('condition', condition);
 
-  burger.updateOne({ devoured: req.body.devoured }, condition, function () {
+  models.burgers.updateOne({ devoured: req.body.devoured }, {where: {id: req.params.id}}).then( function () {
     res.redirect('/burgers');
   });
 });
