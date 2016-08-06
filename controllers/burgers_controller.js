@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/burgers', function (req, res) {
-  models.burgers.findAll().then(function (data) {
+  models.burgers.selectAll().then(function (data) {
     var hbsObject = { burgers: data };
     console.log(hbsObject);
     res.render('index', hbsObject);
